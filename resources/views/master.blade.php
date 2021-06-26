@@ -17,14 +17,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('template/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('template/dist/css/adminlte.css') }}">
-    <script src="{{ asset('template/plugins/dropzone/min/dropzone.min.js') }}"></script>
-    <link rel="stylesheet"
-        href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('template/plugins/ekko-lightbox/ekko-lightbox.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -64,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     </div>
     <!-- ./wrapper -->
-    @include('sweetalert::alert')
+
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
@@ -74,8 +77,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <script src="{{ asset('template/dist/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js') }}">
-    </script>
     @include('sweetalert::alert')
     <script>
         CKEDITOR.replace('editor', {
@@ -84,9 +85,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             height: 600
         });
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+
     <script>
         $(function() {
             // Multiple images preview with JavaScript
@@ -108,8 +108,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             });
         });
     </script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function(e) {
             $('#image').change(function() {
@@ -144,24 +143,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 "responsive": true,
             });
         });
-        $(document).ready(function() {
-            $('#checkBtn').click(function() {
-                checked = $("input[type=checkbox]:checked").length;
-                if (!checked) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '',
-                        text: 'กรุณาเลือกสาขาที่รองรับ',
 
-                    });
-                    return false;
-                }
-
-            });
+    </script>
+    <script>
+        $(function() {
+            bsCustomFileInput.init();
         });
     </script>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('template/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
+    <script src="{{ asset('template/dist/js/demo.js') }}"></script>
+    <script src="{{ asset('template/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
+    <script src="{{ asset('template/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
@@ -177,7 +171,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    @yield('additional_scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.3.2/js/lightgallery.js"></script>
+
     {{-- ck --}}
 
 </body>

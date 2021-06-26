@@ -17,40 +17,47 @@
                             {{ csrf_field() }}
                             <div class="form-group supp">
                                 <label for="text">ชื่อสถานประกอบการ</label>
-                                <input type="text" class="form-control" name="corpname" placeholder="ชื่อสถานประกอบการ"><br>
+                                <input type="text" class="form-control" name="corpname" placeholder="ชื่อสถานประกอบการ"
+                                    value="{{ old('corpname') }}"><br>
                                 <div id="clickevent" class="form-group">
                                     <label><strong>สาขาที่รองรับ :</strong></label><br>
-                                    <label><input type="checkbox" name="suppbranch[]" value="CPE"> CPE
-                                    </label>
+                                    <label><input type="checkbox" name="suppbranch[]" value="CPE"> CPE</label>
                                     <label><input type="checkbox" name="suppbranch[]" value="BC"> BC </label>
                                     <label><input type="checkbox" name="suppbranch[]" value="IT"> IT </label>
-                                    <label><input type="checkbox" name="suppbranch[]" value="GIS"> GIS
-                                    </label>
+                                    <label><input type="checkbox" name="suppbranch[]" value="GIS"> GIS</label>
                                     <label><input type="checkbox" name="suppbranch[]" value="CG"> CG </label>
                                     <label><input type="checkbox" name="suppbranch[]" value="SE"> SE </label>
                                     <label><input type="checkbox" name="suppbranch[]" value="CS"> CS </label>
                                     <label><input type="checkbox" name="suppbranch[]" value="ทุกสาขา">
                                         ทุกสาขา</label>
-
+                                    @error('suppbranch')
+                                        <div class="my-2">
+                                            <span class="text-danger">{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </div>
 
                             </div>
+
                             <div class="form-group">
                                 <label>ที่ตั้งสถานประกอบการ</label>
-                                <input type="text" class="form-control" name="address" placeholder="ที่ตั้งบริษัท"><br>
-
+                                <input type="text" class="form-control" name="address" placeholder="ที่ตั้งบริษัท"
+                                    value="{{ old('address') }}"><br>
                             </div>
                             <div class="form-group">
                                 <label>ปีการศึกษา</label>
                                 {!! Form::selectYear('year', 2564, 2570, '', ['class' => 'form-control']) !!}
                             </div><br>
-                            <label>อัปโหลดไฟล์ข้อมูลรายละเอียดสถานประกอบการ</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile" name="corpdetail">
-                                <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
+
+                            <div class="form-group">
+                                <label for="customFile">รายละเอียดสถานประกอบการ</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile" name="corpdetail">
+                                    <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
+                                </div>
                             </div>
 
-                            <div class="card-footer text-center">
+                            <div class="text-center">
                                 <button type="submit" class="btn btn-primary " id="checkBtn">บันทึก</button>
                                 <button type="reset" class="btn btn-danger ">ยกเลิก</button>
                             </div>

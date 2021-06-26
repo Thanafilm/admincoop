@@ -78,7 +78,7 @@
 
                                         @endforeach
                                     @else
-                                        <td colspan="5">
+                                        <td colspan="6">
                                             <div class="text-center">ไม่มีข้อมูล</div>
                                         </td>
                                     @endif

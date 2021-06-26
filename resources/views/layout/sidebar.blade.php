@@ -20,7 +20,6 @@
         </div>
 
 
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -141,8 +140,9 @@
                 </li>
                 <li class="nav-header">ผู้ใช้</li>
                 <li class="nav-item">
-                    <a  class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();"><i class="nav-icon fas fa-sign-out-alt"></i>
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();"><i
+                            class="nav-icon fas fa-sign-out-alt"></i>
                         {{ __('Logout') }}
                     </a>
 

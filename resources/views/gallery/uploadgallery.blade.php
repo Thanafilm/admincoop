@@ -38,7 +38,6 @@
                             </div>
                             <label>รูปภาพประจำอัลบั้ม</label>
                             <div class="custom-file">
-
                                 <input type="file" name="coverimg" placeholder="เลือกรูปภาพ">
                             </div>
                             <div><br></div>

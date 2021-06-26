@@ -36,7 +36,7 @@
                                             <td class="text-center">{{ $album->updated_at }}</td>
                                             <td class="text-center">
 
-                                                <form action="/gallery/delete/{{ $album->id }}" method="post">
+                                                <form action="/gallery/delete/{{ $album->id }}" method="post" id="confirm_delete">
                                                     <a href="{{ route('Gallery.Update', $album->id) }} "
                                                         class="btn btn-info">
                                                         <i class="far fa-edit"></i> แก้ไข </a>

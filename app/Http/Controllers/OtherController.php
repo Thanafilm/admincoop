@@ -6,16 +6,13 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Coopdetail;
-use App\Models\Eduche;
 use App\Models\Edusche;
 use App\Models\Filedoc;
 use App\Models\Gallery;
 use App\Models\Image;
 use App\Models\News;
 use App\Models\Schedule;
-use App\Models\Schedule2;
 use App\Models\Subcategory;
-use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -186,8 +183,11 @@ class OtherController extends Controller
     public function UploadFiledoc(Request $request)
     {
         $request->validate([
-            'filepath' => 'required',
-            'filepath' => 'mimes:doc,pdf,docx,zip|max:8000'
+            'filepath' => ['mimes:doc,pdf,docx,zip,csv,txt,xlx,xls,pdf']
+        ],[
+
+            'filepath.mimes' => 'ชนิดไฟล์เอกสารไม่ถูกต้อง',
+            'filepath.max' => 'ไฟล์มีขนาดใหญ่เกินไป',
         ]);
         $doc = null;
         if ($request->file('filepath')) {
@@ -229,8 +229,7 @@ class OtherController extends Controller
             $file->delete();
             Alert()->success('', 'ลบไฟล์เอกสารสำเร็จ');
             return back();
-
-        } else {
+        } elseif ($file->filepath == null) {
             $file->delete();
             Alert()->success('', 'ลบไฟล์เอกสารสำเร็จ');
             return back();
@@ -316,6 +315,12 @@ class OtherController extends Controller
     //---------------Company----------------------------//
     public function companyCreate(Request $request)
     {
+        $request->validate([
+            'suppbranch' => 'required',
+        ],
+        [
+            'suppbranch.required'=>'กรุณาเลือกสาขาที่รองรับ'
+        ]);
         $cdtail = null;
         if ($request->corpdetail) {
             $dir = "/app/public/storage/company/";
@@ -496,7 +501,8 @@ class OtherController extends Controller
                 Image::create($request->all());
             }
         }
-        return redirect('/gallery/list');
+        Alert()->success('','บันทึกสำเร็จ');
+        return back();
     }
     public function UpdateGalForm($id)
     {
@@ -525,9 +531,9 @@ class OtherController extends Controller
     public function delImg($id)
     {
         $dir = "/app/public/storage/gallery/";
-        $images = Image::findOrFail($id);
-        if (file_exists($dir . $images)) {
-            unlink($dir . $images);
+        $images = Image::findOrFail($id)->image;
+        if (file_exists($dir.$images)) {
+            unlink($dir.$images);
         }
         Image::find($id)->delete();
         return back();
