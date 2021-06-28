@@ -6,8 +6,8 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header border-0 pt-3">
-                    <h5> <i class="far fa-newspaper"></i> เพิ่มประกาศข่าว </h5>
-                    <a href="/news/list" class="btn btn-info">กลับหน้ารายการ</a>
+                    <h4> <i class="far fa-newspaper"></i> เพิ่มประกาศข่าว </h4>
+                    <a href="/news/list" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="container">
@@ -20,29 +20,15 @@
                                     value="{{ old('topic') }}">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">รูปภาพหัวข่าว</label>
-                                <div class="form-group">
-                                    <div class="col-md-12 mb-2 text-center">
-                                        <img id="preview-image-before-upload"
-                                            src="https://www.riobeauty.co.uk/images/product_image_not_found.gif"
-                                            alt="preview image" style="max-height: 250px;">
+                                <label for="customFile">รูปพาดหัวข่าว</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile" name="image">
+                                    <label class="custom-file-label" for="customFile">เลือกรูปภาพ</label>
+                                    @error('filepath')
+                                    <div class="my-2">
+                                        <span class="text-danger">{{ $message }}</span>
                                     </div>
-                                    <input type="file" name="image" placeholder="Choose image" id="image">
-                                    @if ($message = Session::get('success'))
-                                        <div class="alert alert-success">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @endif
-
-                                    @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                                @enderror
                                 </div>
                             </div>
                             <div class="form-group" rows="20">
@@ -51,8 +37,8 @@
                                     require>{{ old('description') }} </textarea>
                             </div>
 
-                            <div class="card-footer text-center">
-                                <button type="submit" class="btn btn-primary ">บันทึก</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">บันทึก</button>
                                 <button type="reset" class="btn btn-danger ">ยกเลิก</button>
                             </div>
                         </form>

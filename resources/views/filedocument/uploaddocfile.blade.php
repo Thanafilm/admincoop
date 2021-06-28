@@ -54,8 +54,9 @@
                                 </div>
 
                                 <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                                    <button type="reset" class="btn btn-danger">ยกเลิก</button>
                                 </div>
                             </div>
                         </form>
@@ -88,7 +89,7 @@
                     response.forEach(element => {
                         $('#sub_category').append(
                             (
-                                `<option value="${element['id']}">${element['name']}</option>`
+                                `<option value="${element['id']}">${element['subname']}</option>`
                             )
                         );
                     });

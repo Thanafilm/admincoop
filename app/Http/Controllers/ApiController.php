@@ -122,15 +122,16 @@ class ApiController extends Controller
 
     public function gallery(Request $request)
     {
-        $gall = Gallery::all();
+        $gall = Gallery::with('image')->get();
         $map = $gall->map(function ($item) {
-            $data['id'] = $item->id;
-            $data['galleryname'] = $item->galleryname;
-            $data['cover'] = env('APP_URL') . '/storage/public/cover/'  . $item->coverimg;
-            $data['date'] = $item->created_at;
+            foreach (($item->image) as  $value) {
+                $data['id'] = $item->id;
+                $data['galleryname'] = $item->galleryname;
+                $data['cover'] =  env('APP_URL') . '/storage/gallery/' . $value->image;
+                $data['date'] = DateThai($item->created_at);
+            }
             return $data;
         });
-
         return response()->json([
             "message" => 'success',
             "data" => $map

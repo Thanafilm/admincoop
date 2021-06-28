@@ -1,67 +1,23 @@
 @extends('master')
-@section('title', 'อัปรูป')
+@section('title', 'แก้ไขแกลลอรี')
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="card">
                 <!-- /.card-header -->
                 <div class="card-header border-0 pt-4">
-                    <h5> <i class="nav-icon fas fa-edit"></i> อัปโหลดแกลอรี </h5>
-                    <a href="/gallery/list" class="btn btn-info">กลับหน้ารายการ</a>
+                    <h5> <i class="nav-icon fas fa-edit"></i> แก้ไขแกลอรี </h5>
+                    <a href="/gallery/list" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
 
-                </div><br>
+                </div>
                 <!-- form start -->
 
                 <div class="container">
                     <div class="card-body">
-                        <form action="{{ route('Gallery.Update', $gallery->id) }}" method="POST"
-                            enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            <div class="row ">
-                                <div class="col-4">
-                                    <div class="form-group ">
-                                        <label for="text">ชื่ออัลบั้มรูป</label>
-                                        <input type="text" class="form-control" name="galleryname" placeholder="ชื่ออัลบั้ม"
-                                            required value="{{ $gallery->galleryname }}">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="custom-file">
-                                        <input type="file" name="coverimg" placeholder="Choose image">
-                                    </div>
-                                </div>
 
-                                {{-- <div><br></div> --}}
-                                <div class="col-4">
-                                    <div class="custom-file">
-                                        <input type="file" name="images[]" placeholder="Choose image" multiple>
-                                    </div>
-                                </div>
-
-                                {{-- <div><br></div> --}}
-
-
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">บันทึก</button>
-                                <button type="reset" class="btn btn-danger">ยกเลิก</button>
-                            </div>
-                        </form>
                         <div><br></div>
                         <div class="text-center">
                             <div class="container">
-                                <div class="card border-0">
-                                    <div class="card-header border-0">
-                                        <h4 class="card-title">รูปภาพประจำอัลบั้ม</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <img src="{{ Storage::url('cover/' . $gallery->coverimg) }}"
-                                            class="img-responsive" style="max-height:600px; max-width: 350px;">
-                                    </div>
-
-                                </div>
-
-                                <div><br></div>
                                 <div class="card border-0">
                                     <div class="card-header border-0">
                                         <h4 class="card-title">รูปภาพทั้งหมดในอัลบั้ม</h4>
@@ -95,25 +51,40 @@
                                                 </div>
                                             @endif
                                         </div>
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
+                    <form action="{{ route('Gallery.Update', $gallery->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="text">ชื่ออัลบั้มรูปภาพ</label>
+                            <input type="text" class="form-control" name="galleryname" placeholder="ชื่ออัลบั้ม"
+                                required value="{{ $gallery->galleryname }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="customFile">อัปโหลรูปภาพ</label>
+                            <div class="custom-file">
+                                <input type="file" class="form-control" id="customFile" name="images[]"
+                                    multiple>
+                                <label class="custom-file-label" for="customFile">เลือกรูปภาพ</label>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                            <button type="reset" class="btn btn-danger">ยกเลิก</button>
+                        </div><br>
+                    </form>
                 </div>
+
             </div>
         </div>
     </div>
     <script>
-        $(function() {
-            $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-                event.preventDefault();
-                $(this).ekkoLightbox();
-            });
-        })
         $('.delete-confirm').on('click', function(e) {
             e.preventDefault();
             var form = $(this).parents('form');

@@ -1,12 +1,13 @@
-@extends('mater')
+@extends('master')
 @section('title', 'แก้ไขหมวดหมู่')
 @section('content')
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="card">
                 <!-- /.card-header -->
-                <div class="card-header">
-                    <h3 class="card-title text-center "> <i class="nav-icon fas fa-edit"></i> แก้ไขหมวดหมู่ </h3>
+                <div class="card-header border-0 pt-3">
+                    <h4> <i class="nav-icon fas fa-edit"></i> แก้ไขหมวดหมู่ </h4>
+                    <a href="/category/list" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
                 </div>
                 <!-- form start -->
                 <div class="container">
@@ -24,7 +25,7 @@
                                     value="{{ $categorys->desc }}">
                             </div>
 
-                            <div class="card-footer text-center">
+                            <div class="text-center">
                                 <button type="submit" class="btn btn-primary">บันทึก</button>
                                 <button type="reset" class="btn btn-danger">ยกเลิก</button>
                             </div>

@@ -26,9 +26,10 @@ class NewsController extends Controller
     //======>List All News<======//
     public function newsAll(Request $request)
     {
-        $news = News::with('gallery')->get();
+        $news = News::with('gallery','users')->get();
+        $user=User::all();
 
-        return view('newsmanage.listnews', compact('news'));
+        return view('newsmanage.listnews', compact('news','user'));
     }
 
     //======>Create News Post<======//
@@ -44,7 +45,7 @@ class NewsController extends Controller
             if (!is_null($image)) {
                 $news = new News;
                 $news->topic = $request->topic;
-                $news->user_id=Auth::user()->id;
+                $news->user_id = Auth::user()->id;
                 $news->image = $image;
                 $news->description = $request->description;
                 $news->save();
@@ -56,7 +57,6 @@ class NewsController extends Controller
                 Alert()->warning('', 'อัปโหลดไม่สำเร็จ');
             }
         }
-
     }
 
     //======>Update or Edit News Post<======//
@@ -106,9 +106,9 @@ class NewsController extends Controller
     {
         if ($request->hasFile('upload')) {
             $dir = "/app/public/storage/ckupload";
-            $filenametostore= $this->uploadimg($request->file('upload'), $dir);
+            $filenametostore = $this->uploadimg($request->file('upload'), $dir);
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('storage/ckuploads/'.$filenametostore);
+            $url = asset('storage/ckuploads/' . $filenametostore);
             $msg = 'Image successfully uploaded';
             $re = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
 

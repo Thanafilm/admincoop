@@ -72,7 +72,7 @@
                         <div class="small-box bg-white shadow">
                             <div class="inner py-3">
                                 <h3>{{ $news->count() }}</h3>
-                                <p>ยอดการอ่านข่าว</p>
+                                <p>ข่าวทั้งหมด</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-newspaper"></i>
@@ -85,7 +85,7 @@
                         <div class="small-box bg-white shadow">
                             <div class="inner py-3">
                                 <h3>{{ $file->count() }}</h3>
-                                <p>ยอดดาวน์โหลดไฟล์เอกสาร</p>
+                                <p>เอกสารทั้งหมด</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-file-word"></i>

@@ -17,7 +17,7 @@ class CreateSubcategoryTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('category');
-            $table->string('name');
+            $table->string('subname');
             $table->timestamps();
 
         });

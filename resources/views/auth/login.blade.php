@@ -1,7 +1,7 @@
 @extends('layouts.app')
-
+@section('title','ลงชื่อเข้าใช้')
 @section('content')
-    <div class="container">
+    <div class="container " >
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -45,7 +45,8 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
-                                    <a class="btn btn-dark btn-block" href="{{ route('Login.Azure') }}">Login with Microsoft</a>
+                                    <a class="btn btn-danger btn-block" href="{{ route('Login.Azure') }}">Login with
+                                        Microsoft</a>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -62,7 +63,7 @@
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
+                                <div class="col-md-6 offset-md-4 text-center">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>

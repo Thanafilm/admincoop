@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header border-0 pt-3">
-                    <h5> <i class="far fa-newspaper"></i> แก้ไขข้อมูลกำหนดการฝึกงาน </h5>
+                    <h5> <i class="far fa-calendar-alt"></i> แก้ไขข้อมูลกำหนดการฝึกงาน </h5>
                 </div>
                 <!-- /.card-header -->
                 <div class="container">

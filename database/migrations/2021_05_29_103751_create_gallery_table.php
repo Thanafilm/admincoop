@@ -17,7 +17,6 @@ class CreateGalleryTable extends Migration
             $table->id();
             $table->unsignedBigInteger('news_id')->nullable();
             $table->string('galleryname');
-            $table->string('coverimg');
             $table->timestamps();
             // $table->foreign('news_id')->references('id')->on('news');
         });

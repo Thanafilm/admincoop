@@ -5,13 +5,12 @@
     <div class="container-fluid">
 
         <!-- /.container-header -->
-        <div class="col-12">
+        <div class="container-fluid">
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title text-center "> <i class="far fa-newspaper"></i> รายการหมวดหมู่
-                        <a href="/category/create" class="btn btn-primary ">
-                            <i class="fas fa-plus"></i> เพิ่มหมวดหมู่่</a>
-                    </h3><br>
+                <div class="card-header border-0 pt-3">
+                    <h4> <i class="far fa-newspaper"></i> รายการหมวดหมู่ </h4>
+                    <a href="/category/create" class="btn btn-primary ">
+                        <i class="fas fa-plus"></i> เพิ่มหมวดหมู่่</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="container-fluid">
@@ -42,10 +41,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                @else
-                                    <td colspan="4">
-                                        <div class="text-center">ไม่มีข้อมูล</div>
-                                    </td>
+
                                 @endif
 
                             </tbody>

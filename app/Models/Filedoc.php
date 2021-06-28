@@ -16,10 +16,6 @@ class Filedoc extends Model
         'category_id',
         'subcate_id'
     ];
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class);

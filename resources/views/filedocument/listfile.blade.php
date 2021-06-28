@@ -7,49 +7,47 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header border-0 pt-3">
-                    <h4 > <i class="fas fa-newspaper"></i> รายการไฟล์เอกสาร
-                        <a href="/filedoc/upload" class="btn btn-primary">
-                            <i class="fas fa-file-upload"></i> อัปโหลดไฟล์เอกสาร</a></h4>
+                    <h4> <i class="fas fa-newspaper"></i> รายการไฟล์เอกสาร
+                    </h4><a href="/filedoc/upload" class="btn btn-primary">
+                        <i class="fas fa-file-upload"></i> อัปโหลดไฟล์เอกสาร</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="container-fluid">
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    {{-- <th style="width: 10px" class="text-center">ลำดับ</th> --}}
                                     <th class="text-center" style="width: 200px">ชื่อไฟล์</th>
                                     <th style="width: 200px" class="text-center">หมวดหมู่</th>
+                                    <th style="width: 200px" class="text-center">หมวดหมู่ย่อย</th>
                                     <th style="width: 200px" class="text-center">วันที่แก้ไขล่าสุด</th>
                                     <th style="width: 200px" class="text-center">จัดการ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if ($filedoc->count() > 0)
-                                    @foreach ($filedoc as $filedoc)
-                                        <tr>
-                                            <td>{{ $filedoc->filename }}</td>
+                                    @foreach ($filedoc as $file)
 
-                                            <td class="text-center">
-                                                @if ($filedoc->category_id = 1)
-                                                    <a>สหกิจ</a>
-                                                @else
-                                                    <a>ฝึกงาน</a>
-                                                @endif
-                                            </td>
-                                            <td class="text-center">{{ $filedoc->updated_at }}</td>
-                                            <td class="text-center"><a
-                                                    href="{{ route('File.Update.Form', $filedoc->id) }}"
-                                                    class="btn btn-info"><i class="far fa-edit"></i> แก้ไข</a><a> </a>
-                                                <a href="{{ route('file.Delete', $filedoc->id) }}"
-                                                    class="btn btn-danger"><i class="far fa-trash-alt"></i> ลบ</a>
-                                            </td>
-                                        </tr>
+
+                                            <tr>
+                                                <td>{{ $file->filename }}</td>
+
+                                                <td class="text-center">{{ $file->name }}</td>
+                                                <td class="text-center">{{ $file->subname }}</td>
+
+                                                <td class="text-center">{{ $file->updated_at }}</td>
+                                                <td class="text-center"><a
+                                                        href="{{ route('File.Update.Form', $file->id) }}"
+                                                        class="btn btn-info"><i class="far fa-edit"></i> แก้ไข</a><a>
+                                                    </a>
+                                                    <a href="{{ route('file.Delete', $file->id) }}"
+                                                        class="btn btn-danger"><i class="far fa-trash-alt"></i> ลบ</a>
+                                                </td>
+                                            </tr>
+
+
                                     @endforeach
-                                @else
-                                    <td colspan="4">
-                                        <div class="text-center">ไม่มีข้อมูล</div>
-                                    </td>
+
                                 @endif
 
                             </tbody>

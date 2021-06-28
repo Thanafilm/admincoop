@@ -17,8 +17,8 @@ class CreateFiledocTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcate_id');
-            $table->foreign('subcate_id')->references('id')->on('subcategory')->onDelete('restrict');
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('restrict');
+            $table->foreign('subcate_id')->references('id')->on('subcategory');
+            $table->foreign('category_id')->references('id')->on('category');
             $table->string('filename');
             $table->string('filepath')->nullable();
             $table->timestamps();

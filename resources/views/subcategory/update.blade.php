@@ -1,13 +1,15 @@
 @extends('master')
-@section('title', 'เพิ่มหมวดหมู่ย่อย')
+@section('title', 'แก้ไขหมวดหมู่ย่อย')
 @section('content')
     <div class="container-fluid">
+
 
         <div class="container-fluid">
             <div class="card">
                 <!-- /.card-header -->
-                <div class="card-header">
-                    <h3 class="card-title text-center "> <i class="nav-icon fas fa-edit"></i> เพิ่มหมวดหมู่ย่อย </h3>
+                <div class="card-header border-0 pt-3">
+                    <h4> <i class="nav-icon fas fa-edit"></i> แก้ไขหมวดหมู่ย่อย </h4>
+                    <a href="/subcate/list" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
                 </div>
                 <!-- form start -->
                 <div class="container">
@@ -33,7 +35,7 @@
                                     value="{{ $sub->name }}">
                             </div>
                             <!-- /.card-body -->
-                            <div class="card-footer text-center">
+                            <div class="text-center">
                                 <button type="submit" class="btn btn-primary">บันทึก</button>
                                 <button type="reset" class="btn btn-danger">ยกเลิก</button>
                             </div>

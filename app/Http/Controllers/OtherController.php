@@ -16,7 +16,7 @@ use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Spatie\Permission\Traits\HasRoles;
 use RealRashid\SweetAlert\Facades\Alert;
 
 use function Symfony\Component\String\b;
@@ -25,6 +25,7 @@ class OtherController extends Controller
 {
     public function Dashboard()
     {
+        // Auth()->user()->assignRole('admin');
         $news = News::all();
         $file = Filedoc::all();
         $gallery = Gallery::all();
@@ -37,7 +38,6 @@ class OtherController extends Controller
             'category',
             'subcate'
         ));
-
     }
     //----------------------------------------------------------//
     //----------------------->Webpage Management<-------------------------//
@@ -112,7 +112,6 @@ class OtherController extends Controller
         }
         alert()->success('', 'บันทึกสำเร็จ');
         return back();
-
     }
     public function DeleteBanner($id)
     {
@@ -149,7 +148,9 @@ class OtherController extends Controller
     public function listCategory(Request $request)
     {
         $category = Category::latest()->get();
-        return view('category.listcategory', compact('category'));
+        $sub = Subcategory::latest()->get();
+
+        return view('category.listcategory', compact('category','sub'));
     }
 
     public function updateCategory(Request $request, $id)
@@ -157,7 +158,7 @@ class OtherController extends Controller
         $cate = Category::find($id);
         $cate->fill($request->all())->save();
         Alert::success('', 'แก้ไขสำเร็จ');
-        return back();
+        return redirect('/category/list');
     }
     public function updateCategoryForm(Request $request, $id)
     {
@@ -184,7 +185,7 @@ class OtherController extends Controller
     {
         $request->validate([
             'filepath' => ['mimes:doc,pdf,docx,zip,csv,txt,xlx,xls,pdf']
-        ],[
+        ], [
 
             'filepath.mimes' => 'ชนิดไฟล์เอกสารไม่ถูกต้อง',
             'filepath.max' => 'ไฟล์มีขนาดใหญ่เกินไป',
@@ -214,9 +215,13 @@ class OtherController extends Controller
     }
     public function listFiledoc()
     {
-        $filedoc = Filedoc::with('subcategory')->get();
-        $sub = Subcategory::all();
-        // dd($filedoc);
+
+        $filedoc = DB::table('filedoc')
+           ->join('category','category.id','=','filedoc.category_id')
+            ->join('subcategory','subcategory.id','=','filedoc.subcate_id')
+            ->get();
+            // dd($file);
+
         return view('filedocument.listfile', compact('filedoc'));
     }
     public function fileDelete($id)
@@ -233,7 +238,6 @@ class OtherController extends Controller
             $file->delete();
             Alert()->success('', 'ลบไฟล์เอกสารสำเร็จ');
             return back();
-
         }
     }
     public function fileUpdate(Request $request, $id)
@@ -273,7 +277,7 @@ class OtherController extends Controller
     public function subcateCreate(Request $request)
     {
         $subcate = new Subcategory();
-        $subcate->name = $request->name;
+        $subcate->subname = $request->subname;
         $subcate->category_id = $request->category_id;
         $subcate->save();
         alert()->success('', 'เพิ่มสำเร็จ');
@@ -286,7 +290,13 @@ class OtherController extends Controller
     }
     public function subcateList(Request $request)
     {
-        $sub = Subcategory::latest()->get();
+        // $sub = Subcategory::with('category')->get();
+        $sub= Category::with('subcategory')->get();
+        // foreach ($sub as $cate) {
+        //     foreach ($cate->subcategory as  $value) {
+        //         dd($value);
+        //     }
+        // }
         return view('subcategory.listsubcate', compact('sub'));
     }
     public function subcateUpdate(Request $request, $id)
@@ -315,12 +325,14 @@ class OtherController extends Controller
     //---------------Company----------------------------//
     public function companyCreate(Request $request)
     {
-        $request->validate([
-            'suppbranch' => 'required',
-        ],
-        [
-            'suppbranch.required'=>'กรุณาเลือกสาขาที่รองรับ'
-        ]);
+        $request->validate(
+            [
+                'suppbranch' => 'required',
+            ],
+            [
+                'suppbranch.required' => 'กรุณาเลือกสาขาที่รองรับ'
+            ]
+        );
         $cdtail = null;
         if ($request->corpdetail) {
             $dir = "/app/public/storage/company/";
@@ -349,19 +361,9 @@ class OtherController extends Controller
     }
     public function listCopmany(Request $request)
     {
-        $corp = Company::where([
-            ['corpname', '!=', Null],
-            [function ($query) use ($request) {
-                if (($term = $request->term)) {
-                    $query->orWhere('corpname', 'LIKE', '%' . $term . '%')->get();
-                    $query->orWhere('suppbranch', 'LIKE', '%' . $term . '%')->get();
-                }
-            }]
-        ])
-            ->orderBy('id', 'desc')
-            ->paginate(5);
+        $corp = Company::all();
 
-        return view('company.list', compact('corp'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('company.list', compact('corp'));
     }
     public function editCompany(Request $request, $id)
     {
@@ -392,31 +394,16 @@ class OtherController extends Controller
         $gall = Gallery::latest()->get();
         return view('gallery.list', compact('gall'));
     }
-    public function upcoverimage($img, $dir)
-    {
-        $name = rand() . '.' .  $img->getClientOriginalExtension();
-        $img->move($dir, $name);
-        return $name;
-    }
+
     public function postGally(Request $request)
     {
 
         $request->validate([
-            'coverimg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8000',
         ]);
-        if ($request->file("coverimg")) {
-            $file = $request->file("coverimg");
-            $imageName =  rand() . '.' .  $file->getClientOriginalExtension();
-            $file->move('/app/public/storage/cover/', $imageName);
-            $post = new Gallery([
-                'galleryname' => $request->galleryname,
-
-                'coverimg' => $imageName,
-            ]);
-            $post->save();
-        }
-
+        $post = new Gallery();
+        $post->galleryname = $request->galleryname;
+        $post->save();
         if ($request->file("images")) {
             $files = $request->file("images");
             foreach ($files as $file) {
@@ -427,26 +414,18 @@ class OtherController extends Controller
                 Image::create($request->all());
             }
         }
-
-        return redirect("/dashboard");
+        return redirect("/gallery/list");
     }
     public function postGallyNews(Request $request, $id)
     {
         $new = News::find($id);
         $request->validate([
-            'coverimg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8000',
         ]);
-        if ($request->file("coverimg")) {
-            $file = $request->file("coverimg");
-            $imageName =  rand() . '.' .  $file->getClientOriginalExtension();
-            $file->move('/app/public/storage/cover/', $imageName);
-            $post = new Gallery();
-            $post->coverimg = $imageName;
-            $post->galleryname = $request->galleryname;
-            $post->news_id = $new->id;
-            $post->save();
-        }
+        $post = new Gallery();
+        $post->galleryname = $request->galleryname;
+        $post->news_id = $new->id;
+        $post->save();
 
         if ($request->file("images")) {
             $files = $request->file("images");
@@ -473,21 +452,9 @@ class OtherController extends Controller
     public function upDateGallery(Request $request, $id)
     {
         $request->validate([
-            'coverimg' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8000',
         ]);
         $gall = Gallery::findOrFail($id);
-        $cover = $gall->coverimg;
-        $dir = "/app/public/storage/cover/";
-        if ($request->coverimg) {
-            if (file_exists($dir . $cover)) {
-                unlink($dir . $cover);
-            }
-            $file = $request->file("coverimg");
-            $gall->coverimg = rand() . '.' .  $file->getClientOriginalExtension();
-            $file->move('/app/public/storage/cover/',  $gall->coverimg);
-            $request['cover'] = $gall->coverimg;
-        }
         $gall->update([
             'galleryname' => $request->galleryname
         ]);
@@ -501,8 +468,8 @@ class OtherController extends Controller
                 Image::create($request->all());
             }
         }
-        Alert()->success('','บันทึกสำเร็จ');
-        return back();
+        Alert()->success('', 'บันทึกสำเร็จ');
+        return redirect('/gallery/list');
     }
     public function UpdateGalForm($id)
     {
@@ -513,11 +480,9 @@ class OtherController extends Controller
     {
         $gall = Gallery::findOrFail($id);
         $cover = $gall->coverimg;
-        $dir = "/app/public/storage/cover/";
+
         $dirg = "/app/public/storage/gallery/";
-        if (file_exists($dir . $cover)) {
-            unlink($dir . $cover);
-        }
+
         $images = Image::where("gallery_id", $gall->id)->get();
         foreach ($images as $image) {
             if (file_exists($dirg . $image)) {
@@ -532,21 +497,21 @@ class OtherController extends Controller
     {
         $dir = "/app/public/storage/gallery/";
         $images = Image::findOrFail($id)->image;
-        if (file_exists($dir.$images)) {
-            unlink($dir.$images);
+        if (file_exists($dir . $images)) {
+            unlink($dir . $images);
         }
         Image::find($id)->delete();
         return back();
     }
-    public function delCover($id)
-    {
-        $cover = Gallery::find($id)->coverimg;
-        $dir = "/app/public/storage/cover/";
-        if ($cover != null) {
-            if (file_exists($dir . $cover)) {
-                unlink($dir . $cover);
-            }
-        }
-        return back();
-    }
+    // public function delCover($id)
+    // {
+    //     $cover = Gallery::find($id)->coverimg;
+    //     $dir = "/app/public/storage/cover/";
+    //     if ($cover != null) {
+    //         if (file_exists($dir . $cover)) {
+    //             unlink($dir . $cover);
+    //         }
+    //     }
+    //     return back();
+    // }
 }

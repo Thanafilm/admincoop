@@ -6,7 +6,7 @@
             <div class="card">
                 <!-- /.card-header -->
                 <div class="card-header">
-                    <h3 class="card-title text-center "> <i class="nav-icon fas fa-edit"></i> จัดการแบนเนอร์
+                    <h3 class="card-title text-center "> <i class="fab fa-adversal"></i> จัดการแบนเนอร์
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#modal-lg">อัปโหลดแบนเนอร์</button>
                     </h3>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="container-fluid">
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="example1" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th style="width: 10px" class="text-center">ลำดับ</th>
@@ -88,10 +88,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                @else
-                                    <td colspan="4">
-                                        <div class="text-center">ไม่มีข้อมูล</div>
-                                    </td>
+
                                 @endif
 
                             </tbody>
@@ -102,4 +99,3 @@
         </div>
     </div>
 @endsection
-

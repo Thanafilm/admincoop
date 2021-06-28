@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header border-0 pt-3">
                     <h4> <i class="fas fa-building"></i> แก้ไขข้อมูลสถานประกอบการ</h4>
-                    <a href="/company/list" class="btn btn-info">กลับหน้ารายการ</a>
+                    <a href="/company/list" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="container">

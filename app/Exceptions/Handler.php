@@ -38,4 +38,12 @@ class Handler extends ExceptionHandler
             //
         });
     }
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof \Spatie\Permission\Exceptions\UnauthorizedException)
+        {
+            return redirect('/forbid');
+        }
+        return parent::render($request,$e);
+    }
 }

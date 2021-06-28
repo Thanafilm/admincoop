@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\OtherController;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Spatie\Permission\Models\Role;
 
 class LoginController extends Controller
 {
@@ -30,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -51,8 +51,12 @@ class LoginController extends Controller
 
         $this->_registerOrLoginUser($user);
 
-        // Return home after login
-        return redirect()->route('dashboard');
+        if (Auth::user()->hasRole('writer') || Auth::user()->hasRole('admin')) {
+            return redirect()->route('dashboard');
+        } else {
+            return redirect('/');
+        }
+
     }
     protected function _registerOrLoginUser($data)
     {
@@ -62,10 +66,20 @@ class LoginController extends Controller
             $user->name = $data->getName();
             $user->email = $data->getEmail();
             $user->provider_id = $data->getId();
-            $user->avatar = $data->getAvatar();
+            $user->avatar = 'https://cambodiaict.net/wp-content/uploads/2019/12/computer-icons-user-profile-google-account-photos-icon-account.jpg';
             $user->save();
         }
+        if(User::get()->count()==1 && Role::get()->count() == 0){
+            Role::create(['name'=>'admin']);
+            Role::create(['name'=>'writer']);
+
+            $user->assignRole('admin');
+        }
+        // elseif (User::get()->count() > 1) {
+        //     $user->assignRole('none');
+        // }
 
         Auth::login($user);
+
     }
 }
