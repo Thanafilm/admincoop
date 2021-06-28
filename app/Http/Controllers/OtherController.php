@@ -30,13 +30,26 @@ class OtherController extends Controller
         $file = Filedoc::all();
         $gallery = Gallery::all();
         $category = Category::all();
+        $company = Company::all();
         $subcate = Subcategory::all();
+        $comchart = DB::table('company')
+            ->select('year', DB::raw('count(*) as total'))
+            ->groupBy('year')
+            ->get();
+        foreach ($comchart as $value) {
+            $year[] = $value->year;
+            $data[] = $value->total;
+        }
+        // dd($year);
         return view('dashboard', compact(
             'news',
             'file',
             'gallery',
             'category',
-            'subcate'
+            'subcate',
+            'company',
+            'year',
+            'data'
         ));
     }
     //----------------------------------------------------------//
@@ -150,7 +163,7 @@ class OtherController extends Controller
         $category = Category::latest()->get();
         $sub = Subcategory::latest()->get();
 
-        return view('category.listcategory', compact('category','sub'));
+        return view('category.listcategory', compact('category', 'sub'));
     }
 
     public function updateCategory(Request $request, $id)
@@ -217,10 +230,10 @@ class OtherController extends Controller
     {
 
         $filedoc = DB::table('filedoc')
-           ->join('category','category.id','=','filedoc.category_id')
-            ->join('subcategory','subcategory.id','=','filedoc.subcate_id')
+            ->join('category', 'category.id', '=', 'filedoc.category_id')
+            ->join('subcategory', 'subcategory.id', '=', 'filedoc.subcate_id')
             ->get();
-            // dd($file);
+        // dd($file);
 
         return view('filedocument.listfile', compact('filedoc'));
     }
@@ -291,7 +304,7 @@ class OtherController extends Controller
     public function subcateList(Request $request)
     {
         // $sub = Subcategory::with('category')->get();
-        $sub= Category::with('subcategory')->get();
+        $sub = Category::with('subcategory')->get();
         // foreach ($sub as $cate) {
         //     foreach ($cate->subcategory as  $value) {
         //         dd($value);

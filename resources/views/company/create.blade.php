@@ -18,7 +18,7 @@
                             <div class="form-group supp">
                                 <label for="text">ชื่อสถานประกอบการ</label>
                                 <input type="text" class="form-control" name="corpname" placeholder="ชื่อสถานประกอบการ"
-                                    value="{{ old('corpname') }}"><br>
+                                    value="{{ old('corpname') }}" required><br>
                                 <div id="clickevent" class="form-group">
                                     <label><strong>สาขาที่รองรับ :</strong></label><br>
                                     <label><input type="checkbox" name="suppbranch[]" value="CPE"> CPE</label>
@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label>ที่ตั้งสถานประกอบการ</label>
                                 <input type="text" class="form-control" name="address" placeholder="ที่ตั้งบริษัท"
-                                    value="{{ old('address') }}"><br>
+                                    value="{{ old('address') }}" required><br>
                             </div>
                             <div class="form-group">
                                 <label>ปีการศึกษา</label>

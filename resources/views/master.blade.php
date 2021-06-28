@@ -353,7 +353,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 }
             });
         });
+
     </script>
+    <script src="{{ 'template/plugins/chart.js/Chart.min.js' }}"></script>
+    <script src="{{ asset('template/plugins/jquery/jquery.min.js') }}"></script>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('template/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
     <script src="{{ asset('template/dist/js/demo.js') }}"></script>
@@ -376,6 +380,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.3.2/js/lightgallery.js"></script>
+    <!-- jQuery -->
+
+    <!-- Bootstrap 4 -->
+
+    <!-- ChartJS -->
 
     {{-- ck --}}
 
