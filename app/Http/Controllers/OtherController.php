@@ -48,8 +48,8 @@ class OtherController extends Controller
             'category',
             'subcate',
             'company',
-            'year',
-            'data'
+
+
         ));
     }
     //----------------------------------------------------------//

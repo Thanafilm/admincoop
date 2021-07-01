@@ -43,26 +43,15 @@ class UserController extends Controller
     }
     public function UpdateProfile(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'same:confirm-password',
-        ]);
         $input = $request->all();
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
-        }
-
         $user = User::find(Auth::user()->id);
-        $user->save();
+        $user->update($input);
         return redirect();
     }
     public function UpdateProfileForm()
     {
         if (Auth::user()) {
-            $user = User::find(Auth::user()->id);
+            $user = User::find(Auth::user()->id)->get();
             if ($user) {
                 return view('usermanage.profile', compact('user'));
             } else return redirect()->back();
