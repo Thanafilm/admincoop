@@ -15,6 +15,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use function PHPSTORM_META\map;
 
@@ -34,7 +35,10 @@ class ApiController extends Controller
         $edu = Edusche::latest()->first();
         return response()->json([
             "message" => "success",
-            "data" => $edu
+            "data" => [
+                'edusche' => $edu->edusche,
+                'created_at' => DateThai($edu->created_at)
+            ]
         ]);
     }
     public function CoopSchedule()
@@ -112,6 +116,8 @@ class ApiController extends Controller
             'data' => [
                 'id' => $news->id,
                 'writer' => $user->name,
+                'date' => DateThai($news->created_at),
+                'image' => env('APP_URL') . '/storage/image' . '/' . $news->image,
                 'topic' => $news->topic,
                 'desc' => $news->description,
                 'view' => $news->view,
@@ -142,7 +148,7 @@ class ApiController extends Controller
         $gallery = Gallery::with('image')->get()->find($id);
 
         $res = $gallery->image->map(function ($item) {
-            $data['image'] = env('APP_URL') . '/storage/public/gallery/' . $item->image;
+            $data['image'] = env('APP_URL') . '/storage/gallery/' . $item->image;
             return $data;
         });
         return response()->json([
@@ -175,7 +181,7 @@ class ApiController extends Controller
                 $data['category_id'] = $item->category_id;
                 $data['subcategory_id'] = $item->subcate_id;
                 $data['filepath'] = env('APP_URL') . '/storage/filedoc' . '/' . $item->filepath;
-                $data['date'] = $item->created_at;
+                $data['date'] = DateThai($item->created_at);
                 return $data;
             }
         );
@@ -196,7 +202,7 @@ class ApiController extends Controller
                 ->orWhere('corpname', 'LIKE', '%' . $request->input('search') . '%')
                 ->Where('year', '=',  $request->input('year'));
         }
-
+        $filter = DB::table('company')->select('year')->groupBy('year')->get();
         $perpage = $request->input('limit') ?: 10;
         $total = $comp->count();
         $page = $request->input('page') ?: 1;
@@ -212,6 +218,7 @@ class ApiController extends Controller
             return $data;
         });
         return [
+            'filter' => $filter,
             'data' => $cpn,
             'total' => $total,
             'page' => $page,

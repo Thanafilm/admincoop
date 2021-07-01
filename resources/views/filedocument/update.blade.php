@@ -24,6 +24,7 @@
                                     <label>หมวดหมู่</label>
                                     <select class="form-control select2" style="width: 100%;" name="category_id"
                                         id="sub_category_name" required>
+                                        <option value="" disabled selected>เลือกหมวดหมู่</option>
                                         @if ($categorys->count() > 0)
                                             @foreach ($categorys as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -94,7 +95,7 @@
                     response.forEach(element => {
                         $('#sub_category').append(
                             (
-                                `<option value="${element['id']}">${element['name']}</option>`
+                                `<option value="${element['id']}">${element['subname']}</option>`
                             )
                         );
                     });
@@ -103,3 +104,4 @@
         });
     });
 </script>
+

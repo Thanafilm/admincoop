@@ -12,8 +12,12 @@
       <!-- Navbar Search -->
       <li class="nav-item">
 
-        <div class="navbar-search-block">
-
+        <div >
+            @role('admin')
+            <p>คุณกำลังใช้งานในสิทธิ์ของ admin</p>
+            @elserole('writer')
+            <p>คุณกำลังใช้งานในสิทธิ์ของ admin</p>
+            @endrole()
         </div>
       </li>
 

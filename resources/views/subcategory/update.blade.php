@@ -31,8 +31,8 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="text">ชื่อหมวดหมู่</label>
-                                <input type="text" class="form-control" name="name" placeholder="หัวข้อข่าว" required
-                                    value="{{ $sub->name }}">
+                                <input type="text" class="form-control" name="subname" placeholder="หัวข้อข่าว" required
+                                    value="{{ $sub->subname }}">
                             </div>
                             <!-- /.card-body -->
                             <div class="text-center">

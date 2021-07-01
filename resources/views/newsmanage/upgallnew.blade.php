@@ -20,17 +20,13 @@
                                 <input type="text" class="form-control" name="galleryname" placeholder="ชื่ออัลบั้ม"
                                     required value="{{ old('galleryname') }}">
                             </div>
-                            <label>รูปภาพประจำอัลบั้ม</label>
-                            <div class="custom-file">
-                                <input type="file" name="coverimg" placeholder="เลือกรูปภาพ">
+                            <div class="form-group">
+                                <label for="customFile">รูปภาพ</label>
+                                <div class="custom-file">
+                                    <input type="file" class="form-control" id="customFile" name="images[]" multiple>
+                                    <label class="custom-file-label" for="customFile">เลือกไฟล์</label>
+                                </div>
                             </div>
-                            <div><br></div>
-                            <label>รูปภาพ</label>
-                            <div class="custom-file">
-                                <input type="file" name="images[]" placeholder="เลือกรูปภาพ" multiple>
-                            </div>
-                            <div><br></div>
-
                             <div class="card-footer text-center">
                                 <button type="submit" class="btn btn-primary">อัปโหลด</button>
                                 <button type="reset" class="btn btn-danger">ยกเลิก</button>

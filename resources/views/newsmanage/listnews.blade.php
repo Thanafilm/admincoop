@@ -18,7 +18,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">ลำดับ</th>
-                                    <th class="text-center">หัวข้อข่าว</th>
+                                    <th class="text-center" style="width:600px">หัวข้อข่าว</th>
                                     <th class="text-center">ผู้เขี่ยน</th>
                                     <th style="width: 10px" class="text-center">view</th>
                                     <th class="text-center">วันที่ประกาศ</th>

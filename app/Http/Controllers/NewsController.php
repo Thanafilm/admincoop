@@ -108,7 +108,7 @@ class NewsController extends Controller
             $dir = "/app/public/storage/ckupload";
             $filenametostore = $this->uploadimg($request->file('upload'), $dir);
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('storage/ckuploads/' . $filenametostore);
+            $url = asset('storage/ckupload/' . $filenametostore);
             $msg = 'Image successfully uploaded';
             $re = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
 

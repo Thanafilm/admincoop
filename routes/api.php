@@ -22,7 +22,7 @@ Route::get('/news/{id}', [ApiController::class,'newsdesc']);
 Route::get('/gallery',[ApiController::class,'gallery']);
 Route::get('/file',[ApiController::class,'file']);
 Route::get('/gallery/{id}',[ApiController::class,'galleryDetail']);
-Route::get('/compamy',[ApiController::class,'companylist']);
+Route::get('/company',[ApiController::class,'companylist']);
 
 //------------API WEBPAGE---------//
 Route::get('/coopdetail',[ApiController::class,'coopdetal']);
