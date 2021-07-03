@@ -10,6 +10,7 @@
                     <a href="/filedoc/list" class="btn btn-info">กลับหน้ารายการ</a>
                 </div>
                 <!-- /.card-header -->
+
                 <div class="container">
                     <div class="card-body">
                         <form action="{{ route('File.Update', $file->id) }}" method="POST" enctype="multipart/form-data">
@@ -61,14 +62,39 @@
                                     @endif
                                 </div>
                                 <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                                    <button type="reset" class="btn btn-danger">ยกเลิก</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+                    <div class="card-body">
+                        <label>ตัวอย่างไฟล์</label>
+                        @if (pathinfo($file->filepath, PATHINFO_EXTENSION) == 'docx')
+                            <div class="small-box bg-white shadow col-md-6">
+                                <div class="inner py-3">
+                                    <a href="{{ Storage::url('filedoc/' . $file->filepath) }}">
+                                        <p style="font-size: 200%;margin-left:50px"><i class="fas fa-file-download"></i>
+                                            {{ $file->filename }}
+                                        </p>
+                                        <div class="icon" style="font-size: 100%;">
+                                            <i class="fas fa-file-word"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @else
+
+                                <iframe src="{{ Storage::url('filedoc/' . $file->filepath) }}"
+                                    style="width:100%;min-height:700px;postion:absolute" frameborder="0">
+
+                        @endif
+
+                    </div>
+
                 </div>
-                <!-- /.card-body -->
+
             </div>
         </div>
     </div>
@@ -104,4 +130,3 @@
         });
     });
 </script>
-

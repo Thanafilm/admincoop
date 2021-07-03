@@ -84,6 +84,28 @@ class LoginController extends Controller
                 ['title' => 'Video','order'=> 4],
             ]);
         }
+        if(DB::table('category')->get()->count()==0)
+        {
+            DB::table('category')->insert([
+                ['name'=>'สหกิจ','desc'=>'หมวดหมู่สำหรับกิจการโครงการสหกิจศึกษา'],
+                ['name'=>'ฝึกงาน','desc'=>'หมวดหมู่สำหรับงานฝึกงานทั่วไป']
+            ]);
+        }
+        if (DB::table('subcategory')->get()->count()==0)
+        {
+            DB::table('subcategory')->insert([
+                ['category_id'=>1,'subname'=>'เอกสารโครงการสหกิจ'],
+                ['category_id'=>1,'subname'=>'เอกสารสำหรับนิสิต'],
+                ['category_id'=>1,'subname'=>'เอกสารสำหรับอาจารย์'],
+                ['category_id'=>1,'subname'=>'เอกสารสำหรับเจ้าหน้าที่'],
+                ['category_id'=>1,'subname'=>'เอกสารสำหรับสถานประกอบการ'],
+                ['category_id'=>2,'subname'=>'เอกสารฝึกงาน'],
+                ['category_id'=>2,'subname'=>'เอกสารสำหรับนิสิต'],
+                ['category_id'=>2,'subname'=>'เอกสารสำหรับอาจารย์'],
+                ['category_id'=>2,'subname'=>'เอกสารสำหรับเจ้าหน้าที่'],
+                ['category_id'=>2,'subname'=>'เอกสารสำหรับสถานประกอบการ'],
+            ]);
+        }
 
         Auth::login($user);
 

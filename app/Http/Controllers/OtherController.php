@@ -248,11 +248,10 @@ class OtherController extends Controller
     public function listFiledoc()
     {
 
-        $filedoc = DB::table('filedoc')
-            ->join('category', 'category.id', '=', 'filedoc.category_id')
-            ->join('subcategory', 'subcategory.id', '=', 'filedoc.subcate_id')
-            ->get();
-        // dd($file);
+        $filedoc = DB::table('category')
+            ->join('subcategory','category.id','=','subcategory.category_id')
+            ->join('filedoc','filedoc.subcate_id','=','subcategory.id')->get();
+        // dd($filedoc);
 
         return view('filedocument.listfile', compact('filedoc'));
     }

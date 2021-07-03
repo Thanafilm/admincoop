@@ -29,21 +29,21 @@
                                     @foreach ($filedoc as $file)
 
 
-                                            <tr>
-                                                <td>{{ $file->filename }}</td>
+                                        <tr>
+                                            <td>{{ $file->filename }}</td>
 
-                                                <td class="text-center">{{ $file->name }}</td>
-                                                <td class="text-center">{{ $file->subname }}</td>
+                                            <td class="text-center">{{ $file->name }}</td>
+                                            <td class="text-center">{{ $file->subname }}</td>
 
-                                                <td class="text-center">{{ $file->updated_at }}</td>
-                                                <td class="text-center"><a
-                                                        href="{{ route('File.Update.Form', $file->id) }}"
-                                                        class="btn btn-info"><i class="far fa-edit"></i> แก้ไข</a><a>
-                                                    </a>
-                                                    <a href="{{ route('file.Delete', $file->id) }}"
-                                                        class="btn btn-danger"><i class="far fa-trash-alt"></i> ลบ</a>
-                                                </td>
-                                            </tr>
+                                            <td class="text-center">{{ $file->updated_at }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('File.Update.Form', $file->id) }}"
+                                                    class="btn btn-info"><i class="far fa-edit"></i> แก้ไข</a><a>
+                                                </a>
+                                                <a href="{{ route('file.Delete', $file->id) }}" class="btn btn-danger"><i
+                                                        class="far fa-trash-alt"></i> ลบ</a>
+                                            </td>
+                                        </tr>
 
 
                                     @endforeach

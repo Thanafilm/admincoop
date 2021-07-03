@@ -41,7 +41,7 @@
                                                 @endforeach
                                             </td>
                                             <td class="text-center">{{ $new->view }}</td>
-                                            <td>{{ $new->created_at }}</td>
+                                            <td>{{ Datethai($new->created_at) }}</td>
 
                                             <td class="text-center">
                                                 @if ($new->gallery != null)

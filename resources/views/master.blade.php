@@ -23,7 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
+
     <link rel="stylesheet" type="text/css"
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" />
@@ -44,14 +44,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed">
             <!-- Brand Logo -->
             <a href="/dashboard" class="brand-link">
                 <img src="{{ asset('template/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">AdminICTCOOP</span>
             </a>
-
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
@@ -63,14 +62,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="" class="d-block"> {{ Auth::user()->name }}</a>
                     </div>
                 </div>
-
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                       with font-awesome or any other icon font library -->
+               with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
                             <a href="/dashboard"
@@ -83,10 +80,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li
                             class="nav-item {{ Request::segment(1) === 'coopdetail' ? 'menu-open' : null }} {{ Request::segment(1) === 'schedule' ? 'menu-open' : null }}
-                  {{ Request::segment(1) === 'banner' ? 'menu-open' : null }} {{ Request::segment(1) === 'section' ? 'menu-open' : null }} ">
+          {{ Request::segment(1) === 'banner' ? 'menu-open' : null }} {{ Request::segment(1) === 'section' ? 'menu-open' : null }} ">
                             <a href=""
                                 class="nav-link {{ Request::segment(1) === 'coopdetail' ? 'active' : null }} {{ Request::segment(1) === 'schedule' ? 'active' : null }}
-                    {{ Request::segment(1) === 'banner' ? 'active' : null }} {{ Request::segment(1) === 'section' ? 'active' : null }}">
+            {{ Request::segment(1) === 'banner' ? 'active' : null }} {{ Request::segment(1) === 'section' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-window-restore"></i>
                                 <p>
                                     จัดการหน้าเว็บไซต์
@@ -209,7 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         @endrole
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                          document.getElementById('logout-form').submit();"><i
+                                  document.getElementById('logout-form').submit();"><i
                                     class="nav-icon fas fa-sign-out-alt"></i>
                                 <p> ออกจากระบบ </p>
                             </a>
@@ -405,7 +402,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         })
     </script>
-    <script src="{{ 'template/plugins/chart.js/Chart.min.js' }}"></script>
+    <script src="{{ asset('template/plugins/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('template/plugins/jquery/jquery.min.js') }}"></script>
     <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -415,9 +412,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('template/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
     <script src="{{ asset('template/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
     <script src="{{ asset('template/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
     <script src="{{ asset('template/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"> </script>
     <script src="{{ asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
