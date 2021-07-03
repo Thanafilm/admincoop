@@ -11,6 +11,7 @@ use App\Models\Gallery;
 use App\Models\Image;
 use App\Models\News;
 use App\Models\Schedule;
+use App\Models\Section;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -22,6 +23,11 @@ use function PHPSTORM_META\map;
 class ApiController extends Controller
 {
       //---------------------API WEBPAGE----------------------//
+    public function Section()
+    {
+        $sec =Section::orderBy('order')->get();
+        return response()->json($sec);
+    }
     public function CoopDetal()
     {
         $coop = Coopdetail::latest()->get();

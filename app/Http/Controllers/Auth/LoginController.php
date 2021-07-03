@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use Spatie\Permission\Models\Role;
 
@@ -75,9 +76,14 @@ class LoginController extends Controller
 
             $user->assignRole('admin');
         }
-        // elseif (User::get()->count() > 1) {
-        //     $user->assignRole('none');
-        // }
+        if(DB::table('section')->get()->count()==0){
+            DB::table('section')->insert([
+                ['title' => 'Banner','order'=> 1],
+                ['title' => 'News','order'=> 2],
+                ['title' => 'Gallery','order'=> 3],
+                ['title' => 'Video','order'=> 4],
+            ]);
+        }
 
         Auth::login($user);
 

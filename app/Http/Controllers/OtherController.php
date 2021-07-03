@@ -12,6 +12,7 @@ use App\Models\Gallery;
 use App\Models\Image;
 use App\Models\News;
 use App\Models\Schedule;
+use App\Models\Section;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -141,6 +142,27 @@ class OtherController extends Controller
         $ban = Banner::all();
         // dd($ban);
         return view('webpagemanage.banner', compact('ban'));
+    }
+    public function SectionView()
+    {
+        $posts = Section::orderBy('order','ASC')->get();
+        return view('webpagemanage.section', compact('posts'));
+    }
+    public function updateItems(Request $request)
+    {
+
+
+        $posts = Section::all();
+
+        foreach ($posts as $post) {
+            foreach ($request->order as $order) {
+                if ($order['id'] == $post->id) {
+                    $post->update(['order' => $order['position']]);
+                }
+            }
+        }
+
+        return response('Update Successfully.', 200);
     }
     //----------------------------------------------------------//
     //----------------------->Category Management<-------------------------//

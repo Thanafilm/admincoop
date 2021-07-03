@@ -42,6 +42,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/', function () {
         if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('writer')) {
             return redirect('/dashboard');
@@ -62,6 +63,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/list', [UserController::class, 'listUser']);
     });
     Route::middleware(['role:admin|writer'])->group(function () {
+        Route::post('sectionupdate',[OtherController::class,'updateItems']);
+        ROute::get('/section',[OtherController::class,'sectionView']);
         Route::post('/profile',[UserController::class,'updateprofile'])->name('Profile.Update');
         Route::get('/profile', [UserController::class,'updateprofileform'])->name('ProfileForm');
         Route::get('/dashboard', [OtherController::class, 'Dashboard'])->name('dashboard');
