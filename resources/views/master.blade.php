@@ -81,9 +81,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item {{ Request::segment(1) === 'coopdetail' ? 'menu-open' : null }} {{ Request::segment(1) === 'schedule' ? 'menu-open' : null }}
+                        <li
+                            class="nav-item {{ Request::segment(1) === 'coopdetail' ? 'menu-open' : null }} {{ Request::segment(1) === 'schedule' ? 'menu-open' : null }}
                   {{ Request::segment(1) === 'banner' ? 'menu-open' : null }} {{ Request::segment(1) === 'section' ? 'menu-open' : null }} ">
-                            <a href="" class="nav-link {{ Request::segment(1) === 'coopdetail' ? 'active' : null }} {{ Request::segment(1) === 'schedule' ? 'active' : null }}
+                            <a href=""
+                                class="nav-link {{ Request::segment(1) === 'coopdetail' ? 'active' : null }} {{ Request::segment(1) === 'schedule' ? 'active' : null }}
                     {{ Request::segment(1) === 'banner' ? 'active' : null }} {{ Request::segment(1) === 'section' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-window-restore"></i>
                                 <p>
