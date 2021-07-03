@@ -143,26 +143,23 @@ class OtherController extends Controller
         // dd($ban);
         return view('webpagemanage.banner', compact('ban'));
     }
-    public function SectionView()
+    public function SectionView(Request $request)
     {
-        $posts = Section::orderBy('order','ASC')->get();
-        return view('webpagemanage.section', compact('posts'));
+        $data= Section::orderBy('order','ASC')->get();
+        return view('webpagemanage.section', compact('data'));
     }
     public function updateItems(Request $request)
     {
-
-
-        $posts = Section::all();
-
-        foreach ($posts as $post) {
-            foreach ($request->order as $order) {
-                if ($order['id'] == $post->id) {
-                    $post->update(['order' => $order['position']]);
-                }
+        if ($request->has('ids'))
+        {
+            $arr = explode(',',$request->input('ids'));
+            foreach ($arr as $sort =>$id){
+                $menu = Section::find($id);
+                $menu->order=$sort;
+                $menu->save();
             }
         }
-
-        return response('Update Successfully.', 200);
+        return ['success'=>true,'message'];
     }
     //----------------------------------------------------------//
     //----------------------->Category Management<-------------------------//

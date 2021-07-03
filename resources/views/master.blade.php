@@ -26,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
     <link rel="stylesheet" type="text/css"
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-
+    <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="{{ asset('template/plugins/ekko-lightbox/ekko-lightbox.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
@@ -82,9 +82,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item {{ Request::segment(1) === 'coopdetail' ? 'menu-open' : null }} {{ Request::segment(1) === 'schedule' ? 'menu-open' : null }}
-                  {{ Request::segment(1) === 'banner' ? 'menu-open' : null }} ">
+                  {{ Request::segment(1) === 'banner' ? 'menu-open' : null }} {{ Request::segment(1) === 'section' ? 'menu-open' : null }} ">
                             <a href="" class="nav-link {{ Request::segment(1) === 'coopdetail' ? 'active' : null }} {{ Request::segment(1) === 'schedule' ? 'active' : null }}
-                    {{ Request::segment(1) === 'banner' ? 'active' : null }}">
+                    {{ Request::segment(1) === 'banner' ? 'active' : null }} {{ Request::segment(1) === 'section' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-window-restore"></i>
                                 <p>
                                     จัดการหน้าเว็บไซต์
@@ -92,6 +92,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/section"
+                                        class="nav-link {{ Request::segment(1) === 'section' ? 'active' : null }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>แก่ไขลำดับ section</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="/banner"
                                         class="nav-link {{ Request::segment(1) === 'banner' ? 'active' : null }}">
@@ -359,10 +366,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 }
             });
         });
+        $(document).ready(function() {
+
+            function updateToDatabase(idString) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                });
+
+                $.ajax({
+                    url: '{{ url('/menu/update-order') }}',
+                    method: 'POST',
+                    data: {
+                        ids: idString
+                    },
+                    success: function() {
+                        alert('Successfully updated')
+                        //do whatever after success
+                    }
+                })
+            }
+
+            var target = $('.sort_menu');
+            target.sortable({
+                handle: '.handle',
+                placeholder: 'highlight',
+                axis: "y",
+                update: function(e, ui) {
+                    var sortData = target.sortable('toArray', {
+                        attribute: 'data-id'
+                    })
+                    updateToDatabase(sortData.join(','))
+                }
+            })
+
+        })
     </script>
     <script src="{{ 'template/plugins/chart.js/Chart.min.js' }}"></script>
     <script src="{{ asset('template/plugins/jquery/jquery.min.js') }}"></script>
-
+    <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('template/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
     <script src="{{ asset('template/dist/js/demo.js') }}"></script>

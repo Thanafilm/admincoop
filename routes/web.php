@@ -63,7 +63,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/list', [UserController::class, 'listUser']);
     });
     Route::middleware(['role:admin|writer'])->group(function () {
-        Route::post('sectionupdate',[OtherController::class,'updateItems']);
+        Route::post('menu/update-order',[OtherController::class,'updateItems']);
         ROute::get('/section',[OtherController::class,'sectionView']);
         Route::post('/profile',[UserController::class,'updateprofile'])->name('Profile.Update');
         Route::get('/profile', [UserController::class,'updateprofileform'])->name('ProfileForm');
