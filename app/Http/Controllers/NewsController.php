@@ -37,7 +37,12 @@ class NewsController extends Controller
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+            'description' =>'required'
+        ],
+        [
+            'descrtiption.requiresd' => 'กรุณากรอกเนื้อหาข่าว'
+        ]
+    );
         $image = null;
         if ($request->file('image')) {
             $dir = "/app/public/storage/image/";

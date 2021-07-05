@@ -2,8 +2,6 @@
 @section('title', 'รายการข่าว')
 @section('content')
     <div class="container-fluid">
-
-
         <!-- /.container-header -->
         <div class="col-12">
             <div class="card">

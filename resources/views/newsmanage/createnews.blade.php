@@ -25,16 +25,22 @@
                                     <input type="file" class="custom-file-input" id="customFile" name="image">
                                     <label class="custom-file-label" for="customFile">เลือกรูปภาพ</label>
                                     @error('filepath')
-                                    <div class="my-2">
-                                        <span class="text-danger">{{ $message }}</span>
-                                    </div>
-                                @enderror
+                                        <div class="my-2">
+                                            <span class="text-danger">{{ $message }}</span>
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group" rows="20">
                                 <label>เนื้อหา</label>
+                                @error('description')
+                                    <div class="my-2">
+                                        <span class="text-danger">{{ $message }}</span>
+                                    </div>
+                                @enderror
                                 <textarea class="form-controll" name="description" placeholder="เนื้อข่าว" id="editor"
                                     require>{{ old('description') }} </textarea>
+
                             </div>
 
                             <div class="text-center">
@@ -49,4 +55,3 @@
         </div>
     </div>
 @endsection
-

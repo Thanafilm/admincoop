@@ -30,7 +30,7 @@
                                     @foreach ($sub as $sub)
                                         @foreach ($sub->subcategory as $value)
                                             <tr>
-                                                <td class="text-center">{{ $loop->index + 1 }}</td>
+                                                <td class="text-center">{{ $value->id }}</td>
                                                 <td class="text-center">
                                                     @if ($sub->id === $value->category_id)
                                                         {{ $sub->name }}

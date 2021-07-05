@@ -22,7 +22,7 @@
                                     <th style="width: 30px" class="text-center">ลำดับ</th>
                                     <th class="text-center" style="width: 200px">ชื่อหมวดหมู่</th>
                                     <th style="width: 200px" class="text-center">รายละเอียด</th>
-                                    <th style="width: 200px" class="text-center">วันที่แก้ไขล่าสุด</th>
+                                    {{-- <th style="width: 200px" class="text-center">วันที่แก้ไขล่าสุด</th> --}}
                                     <th style="width: 200px" class="text-center">จัดการ</th>
                                 </tr>
                             </thead>
@@ -33,7 +33,7 @@
                                             <td class="text-center">{{ $loop->index + 1 }}</td>
                                             <td>{{ $category->name }}</td>
                                             <td>{{ $category->desc }}</td>
-                                            <td>{{ $category->updated_at }}</td>
+                                            {{-- <td>{{ $category->updated_at }}</td> --}}
                                             <td class="text-center"><a href="{{ route('updateCateForm', $category->id) }}"
                                                     class="btn btn-info"><i class="far fa-edit"></i> แก้ไข</a><a> </a>
                                                 <a href="{{ route('deleteCate', $category->id) }}"

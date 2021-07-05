@@ -181,7 +181,7 @@ class OtherController extends Controller
     {
         $category = Category::latest()->get();
         $sub = Subcategory::latest()->get();
-
+        // dd($category);
         return view('category.listcategory', compact('category', 'sub'));
     }
 
@@ -323,11 +323,7 @@ class OtherController extends Controller
     {
         // $sub = Subcategory::with('category')->get();
         $sub = Category::with('subcategory')->get();
-        // foreach ($sub as $cate) {
-        //     foreach ($cate->subcategory as  $value) {
-        //         dd($value);
-        //     }
-        // }
+        // dd($sub);
         return view('subcategory.listsubcate', compact('sub'));
     }
     public function subcateUpdate(Request $request, $id)

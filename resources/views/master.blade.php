@@ -195,6 +195,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-header">ผู้ใช้</li>
                         @role('admin')
                         <li class="nav-item">
+                            <a href="/history"
+                                class="nav-link {{ Request::segment(1) === 'history' ? 'active' : null }}">
+                                <i class="nav-icon fas fa-history"></i>
+                                <p>
+                                    ประวัติการดำเนินการ
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/user/list"
                                 class="nav-link {{ Request::segment(1) === 'user' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-users-cog"></i>

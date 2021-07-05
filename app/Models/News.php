@@ -4,17 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Kyslik\ColumnSortable\Sortable;
+
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class News extends Model
 {
-    use HasFactory;
+    use HasFactory,LogsActivity;
     protected $guarded;
     protected $fillable = [
         'topic',
         'image',
         'description'
     ];
+    protected static $logAttributes = ['topic','image','description','user_id'];
+
     public function users()
     {
         return $this->belongsTo(User::class);
@@ -22,12 +25,10 @@ class News extends Model
     public function gallery()
     {
         return $this->hasOne(Gallery::class);
-
     }
     public function getgall($id)
     {
         $news = News::find($id)->gallery();
     }
-    use Sortable;
-    public $sortable = ['id','topic','view','created_at','updated_at'];
+
 }

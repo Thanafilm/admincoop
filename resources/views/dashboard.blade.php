@@ -115,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid">
+                {{-- <div class="container-fluid">
                     <div class="card card-success">
                         <div class="card-header">
                             <h3 class="card-title">Bar Chart</h3>
@@ -133,7 +133,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
