@@ -46,7 +46,7 @@
                                                 <td class="text-center"><a
                                                         href="{{ route('Company.Edit.Form', $new->id) }}"
                                                         class="btn btn-info"><i class="far fa-edit"></i> แก้ไข</a><a> </a>
-                                                    <a href="{{ route('news.Delete', $new->id) }}"
+                                                    <a href="{{ route('DeleteComps', $new->id) }}"
                                                         class="btn btn-danger"><i class="far fa-trash-alt"></i> ลบ</a>
                                                 </td>
                                             </tr>

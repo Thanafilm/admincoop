@@ -116,6 +116,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/company/list', [OtherController::class, 'listCopmany']);
         Route::post('/company/update/{id}', [OtherController::class, 'editcompany'])->name('Company.Edit');
         Route::get('/company/update/{id}', [OtherController::class, 'editcompanyform'])->name('Company.Edit.Form');
+        Route::get('/company/delete/{id}',[OtherController::class,'deleteCompany'])->name('DeleteComps');
         //Gallery
         Route::post('/gallery/news/creates/{id}', [OtherController::class, 'postGallynews'])->name('Gallery.Create.News');
         Route::post('/gallery/news/create/{id}', [OtherController::class, 'Newsgal'])->name('Gallery.Create.News.Form');

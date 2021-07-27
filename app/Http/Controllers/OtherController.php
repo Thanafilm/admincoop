@@ -415,6 +415,17 @@ class OtherController extends Controller
         $br = json_decode($coms->suppbranch);
         return view('company.update', compact('coms', 'br'));
     }
+    public function deleteCompany($id)
+    {
+        $comp = Company::find($id);
+        $imagepath = "storage/company/" .  $comp->corpdetail;
+        if (file_exists($imagepath)) {
+            unlink($imagepath);
+        }
+        $comp->delete();
+        Alert()->success('ลบข้อมูลสถานประกอบการเรียบร้อย');
+        return back();
+    }
     //-------------- NEws GALLERy--------------///-------------- NEws GALLERy--------------///
     public function listGall()
     {
