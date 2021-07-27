@@ -61,8 +61,10 @@ class UserController extends Controller
     public function hisNews(Request $request)
     {
         $activities = DB::table('users')
-            ->join('activity_log','activity_log.causer_id','=','users.id')->get();
-        // dd($activities);
+            ->join('activity_log','activity_log.causer_id','=','users.id')
+            ->orderBy('activity_log.updated_at','desc')
+            ->get();
+
         return view('usermanage.history', compact('activities'));
     }
 }

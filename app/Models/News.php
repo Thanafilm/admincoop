@@ -10,13 +10,14 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class News extends Model
 {
     use HasFactory,LogsActivity;
+    protected static $logAttributes = ['topic','image','description','user_id'];
     protected $guarded;
     protected $fillable = [
         'topic',
         'image',
         'description'
     ];
-    protected static $logAttributes = ['topic','image','description','user_id'];
+
 
     public function users()
     {
