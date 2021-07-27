@@ -118,7 +118,7 @@ class OtherController extends Controller
         if ($request->file('image')) {
             $image = $request->file('image');
             $imageName = rand() . '.' .  $image->getClientOriginalExtension();
-            $image->move('/app/public/storage/banner/', $imageName);
+            $image->move('/app/storage/app/public/banner/', $imageName);
             $ban = new Banner();
             $ban->image = $imageName;
             $ban->path = $request->path;
@@ -129,7 +129,7 @@ class OtherController extends Controller
     }
     public function DeleteBanner($id)
     {
-        $dir = '/app/public/storage/banner/';
+        $dir = '/app/storage/app/public/banner/';
         $images = Banner::findOrFail($id)->image;
         if (file_exists($dir . $images)) {
             unlink($dir . $images);
@@ -224,7 +224,7 @@ class OtherController extends Controller
         ]);
         $doc = null;
         if ($request->file('filepath')) {
-            $dir = "/app/public/storage/filedoc/";
+            $dir = "/app/storage/app/public/filedoc/";
             $doc = $this->upFile($request->file('filepath'), $dir);
         }
         $file = new Filedoc();
@@ -258,7 +258,7 @@ class OtherController extends Controller
     public function fileDelete($id)
     {
         $file = Filedoc::find($id);
-        $doc = "/app/public/storage/filedoc/" . $file->filepath;
+        $doc = "/app/storage/app/public/filedoc/" . $file->filepath;
 
         if (file_exists($doc)) {
             unlink($doc);
@@ -281,7 +281,7 @@ class OtherController extends Controller
             'filepath' => 'mimes:doc,pdf,docx,zip|max:8000'
         ]);
         if ($request->file('filepath')) {
-            $dir = "/app/public/storage/filedoc/";
+            $dir = "/app/storage/app/public/filedoc/";
             if (file_exists($dir . $fd)) {
                 unlink($dir . $fd);
             }
@@ -362,7 +362,7 @@ class OtherController extends Controller
         );
         $cdtail = null;
         if ($request->corpdetail) {
-            $dir = "/app/public/storage/company/";
+            $dir = "/app/storage/app/public/company/";
             $cdtail = $this->upFile($request->corpdetail, $dir);
         }
         $suppbranchs = $request->input('suppbranch');
@@ -396,7 +396,7 @@ class OtherController extends Controller
     {
         $coms = Company::find($id);
         $file = $coms->corpdetail;
-        $dir = "/app/public/storage/company/";
+        $dir = "/app/storage/app/public/company/";
         $coms->fill($request->all())->save();
         if ($request->corpdetail) {
             if (file_exists($dir . $file)) {
@@ -437,7 +437,7 @@ class OtherController extends Controller
                 $imageName =  rand() . '.' .  $file->getClientOriginalExtension();
                 $request['gallery_id'] = $post->id;
                 $request['image'] = $imageName;
-                $file->move('/app/public/storage/gallery/', $imageName);
+                $file->move('/app/storage/app/public/gallery/', $imageName);
                 Image::create($request->all());
             }
         }
@@ -460,7 +460,7 @@ class OtherController extends Controller
                 $imageName =  rand() . '.' .  $file->getClientOriginalExtension();
                 $request['gallery_id'] = $post->id;
                 $request['image'] = $imageName;
-                $file->move('/app/public/storage/gallery/', $imageName);
+                $file->move('/app/storage/app/public/gallery/', $imageName);
                 Image::create($request->all());
             }
         }
@@ -491,7 +491,7 @@ class OtherController extends Controller
                 $imageName = rand() . '.' .  $file->getClientOriginalExtension();
                 $request['gallery_id'] = $id;
                 $request['image'] = $imageName;
-                $file->move('/app/public/storage/gallery/', $imageName);
+                $file->move('/app/storage/app/public/gallery/', $imageName);
                 Image::create($request->all());
             }
         }
@@ -508,7 +508,7 @@ class OtherController extends Controller
         $gall = Gallery::findOrFail($id);
         $cover = $gall->coverimg;
 
-        $dirg = "/app/public/storage/gallery/";
+        $dirg = "/app/storage/app/public/gallery/";
 
         $images = Image::where("gallery_id", $gall->id)->get();
         foreach ($images as $image) {
@@ -522,7 +522,7 @@ class OtherController extends Controller
     }
     public function delImg($id)
     {
-        $dir = "/app/public/storage/gallery/";
+        $dir = "/app/storage/app/public/gallery/";
         $images = Image::findOrFail($id)->image;
         if (file_exists($dir . $images)) {
             unlink($dir . $images);
@@ -533,7 +533,7 @@ class OtherController extends Controller
     // public function delCover($id)
     // {
     //     $cover = Gallery::find($id)->coverimg;
-    //     $dir = "/app/public/storage/cover/";
+    //     $dir = "/app/storage/app/public/cover/";
     //     if ($cover != null) {
     //         if (file_exists($dir . $cover)) {
     //             unlink($dir . $cover);
