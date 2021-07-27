@@ -70,7 +70,7 @@
                                             </td>
                                             <td class="text-center" style="vertical-align: middle">
                                                 @if ($img->path != null)
-                                                    <a href="{{ $img->path }}" target="_blank" class="btn btn-success"><i
+                                                    <a href="{{ 'https://'.$img->path }}" target="_blank" class="btn btn-success"><i
                                                             class="fas fa-link"></i> คลิกลิงค์</a>
                                                 @else
                                                     <a>ไม่มีลิงค์แนบประกอบ</a>

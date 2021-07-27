@@ -45,7 +45,7 @@ class NewsController extends Controller
     );
         $image = null;
         if ($request->file('image')) {
-            $dir = "/app/public/storage/image/";
+            $dir = "/app/storage/app/public/image/";
             $image = $this->uploadimg($request->file('image'), $dir);
             if (!is_null($image)) {
                 $news = new News;
@@ -71,7 +71,7 @@ class NewsController extends Controller
         $image = $news->image;
         $news->fill($request->all())->save();
         if ($request->image) {
-            $dir = "storage/image/";
+            $dir = "/app/storage/app/public/image/";
             if (file_exists($dir . $image)) {
                 unlink($dir . $image);
             }
@@ -110,7 +110,7 @@ class NewsController extends Controller
     public function ckUpload(Request $request)
     {
         if ($request->hasFile('upload')) {
-            $dir = "/app/public/storage/ckupload";
+            $dir = "/storage/ckupload";
             $filenametostore = $this->uploadimg($request->file('upload'), $dir);
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = asset('storage/ckupload/' . $filenametostore);

@@ -349,13 +349,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script>
         $(function() {
             bsCustomFileInput.init();
-        });
-        $(function() {
             $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
-                $(this).ekkoLightbox();
-            });
-        })
+                $(this).ekkoLightbox({
+             alwaysShowClose: true
+      });
+    });
+        });
+
         $('.delete-confirm').on('click', function(e) {
             e.preventDefault();
             var form = $(this).parents('form');
@@ -412,13 +413,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         })
     </script>
     <script src="{{ asset('template/plugins/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('template/plugins/jquery/jquery.min.js') }}"></script>
     <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('template/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
-    <script src="{{ asset('template/dist/js/demo.js') }}"></script>
-    <script src="{{ asset('template/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
+
+
     <script src="{{ asset('template/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
     <script src="{{ asset('template/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 
