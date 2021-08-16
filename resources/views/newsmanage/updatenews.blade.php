@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header border-0 pt-3">
                     <h4> <i class="far fa-newspaper"></i> แก้ไขประกาศข่าว </h4>
-                    <a href="/news/list" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
+                    <a href="{{ url('/news/list') }}" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="container">

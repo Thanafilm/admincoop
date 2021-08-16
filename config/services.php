@@ -32,7 +32,7 @@ return [
     'azure' => [
         'client_id' => env('AZURE_CLIENT_ID'),
         'client_secret' => env('AZURE_CLIENT_SECRET'),
-        'redirect' => 'http://localhost/coopadmin/login/azurecallback'
+        'redirect' => 'http://localhost/cooadmin/login/azurecallback'
       ],
 
 ];

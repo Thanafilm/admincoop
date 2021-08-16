@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header border-0 pt-3">
                     <h3> <i class="fas fa-building"></i> แก้ไขข้อมูลไฟล์เอกสาร </h3>
-                    <a href="/filedoc/list" class="btn btn-info">กลับหน้ารายการ</a>
+                    <a href="{{ url('/filedoc/list') }}" class="btn btn-info">กลับหน้ารายการ</a>
                 </div>
                 <!-- /.card-header -->
 

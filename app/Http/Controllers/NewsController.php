@@ -54,7 +54,7 @@ class NewsController extends Controller
                 $news->image = $image;
                 $news->description = $request->description;
                 $news->save();
-                Alert()->success('อัพโหลดสำเร็จ');
+                Alert()->success('อัปโหลดสำเร็จ');
                 return back();
             } else {
                 return Redirect::back()->withErrors($request)->withInput();
@@ -71,7 +71,7 @@ class NewsController extends Controller
         $image = $news->image;
         $news->fill($request->all())->save();
         if ($request->image) {
-            $dir = "/app/storage/app/public/image/";
+            $dir = "storage/image/";
             if (file_exists($dir . $image)) {
                 unlink($dir . $image);
             }
@@ -110,7 +110,7 @@ class NewsController extends Controller
     public function ckUpload(Request $request)
     {
         if ($request->hasFile('upload')) {
-            $dir = "/storage/ckupload";
+            $dir = "/app/storage/app/public/ckupload";
             $filenametostore = $this->uploadimg($request->file('upload'), $dir);
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = asset('storage/ckupload/' . $filenametostore);

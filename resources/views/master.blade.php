@@ -70,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
-                            <a href="/dashboard"
+                            <a href="{{ url('/dashboard') }}"
                                 class="nav-link {{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -92,35 +92,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/section"
+                                    <a href="{{ url('/section') }}"
                                         class="nav-link {{ Request::segment(1) === 'section' ? 'active' : null }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>แก่ไขลำดับ section</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/banner"
+                                    <a href="{{ url('/banner') }}"
                                         class="nav-link {{ Request::segment(1) === 'banner' ? 'active' : null }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>แก้ไขสไลด์แเบนเนอร์</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/coopdetail"
+                                    <a href="{{ url('/coopdetail') }}"
                                         class="nav-link {{ Request::segment(1) === 'coopdetail' ? 'active' : null }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>แก้ไขข้อมูลสหกิจ</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/schedule/coop"
+                                    <a href="{{ url('/schedule/coop') }}"
                                         class="nav-link {{ Request::segment(2) === 'coop' ? 'active' : null }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>แก้ไขกำหนดการสหกิจ</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/schedule/edu"
+                                    <a href="{{ url('/schedule/edu') }}"
                                         class="nav-link {{ Request::segment(2) === 'edu' ? 'active' : null }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>แก้ไขกำหนดการฝึกงาน</p>
@@ -140,14 +140,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/category/list"
+                                    <a href="{{ url("/category/list") }}"
                                         class="nav-link {{ Request::segment(1) === 'category' ? 'active' : null }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>รายการหมวดหมู่หลัก</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/subcate/list"
+                                    <a href="{{ url('/subcate/list') }}"
                                         class="nav-link {{ Request::segment(1) === 'subcate' ? 'active' : null }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>รายการหมวดหมู่ย่อย</p>
@@ -156,7 +156,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="/news/list"
+                            <a href="{{ url('/news/list') }}"
                                 class="{{ Request::segment(1) === 'news' ? 'active' : null }} nav-link ">
                                 <i class="nav-icon fas fa-newspaper"></i>
                                 <p>
@@ -165,7 +165,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="/gallery/list"
+                            <a href="{{ url('/gallery/list') }}"
                                 class="nav-link {{ Request::segment(1) === 'gallery' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-images"></i>
                                 <p>
@@ -175,7 +175,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
-                            <a href="/filedoc/list"
+                            <a href="{{ url('/filedoc/list') }}"
                                 class="nav-link {{ Request::segment(1) === 'filedoc' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-file-alt"></i>
                                 <p>
@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/company/list"
+                            <a href="{{ url('/company/list') }}"
                                 class="nav-link {{ Request::segment(1) === 'company' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-building"></i>
                                 <p>
@@ -195,7 +195,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-header">ผู้ใช้</li>
                         @role('admin')
                         <li class="nav-item">
-                            <a href="/history"
+                            <a href="{{ url('/history') }}"
                                 class="nav-link {{ Request::segment(1) === 'history' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>
@@ -204,7 +204,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/user/list"
+                            <a href="{{ url('/user/list') }}"
                                 class="nav-link {{ Request::segment(1) === 'user' ? 'active' : null }}">
                                 <i class="nav-icon fas fa-users-cog"></i>
                                 <p>

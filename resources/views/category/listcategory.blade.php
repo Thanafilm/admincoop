@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header border-0 pt-3">
                     <h4> <i class="far fa-newspaper"></i> รายการหมวดหมู่ </h4>
-                    <a href="/category/create" class="btn btn-primary ">
+                    <a href="{{ url('/category/create') }}" class="btn btn-primary ">
                         <i class="fas fa-plus"></i> เพิ่มหมวดหมู่่</a>
                 </div>
                 <!-- /.card-header -->

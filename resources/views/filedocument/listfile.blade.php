@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header border-0 pt-3">
                     <h4> <i class="fas fa-newspaper"></i> รายการไฟล์เอกสาร
-                    </h4><a href="/filedoc/upload" class="btn btn-primary">
+                    </h4><a href="{{ url('/filedoc/upload') }}" class="btn btn-primary">
                         <i class="fas fa-file-upload"></i> อัปโหลดไฟล์เอกสาร</a>
                 </div>
                 <!-- /.card-header -->

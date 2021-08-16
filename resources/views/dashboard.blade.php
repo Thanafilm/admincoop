@@ -16,7 +16,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="/news/list" class="small-box-footer py-3">จัดการ <i
+                        <a href="{{ url('news/list') }}" class="small-box-footer py-3">จัดการ <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
 
@@ -31,7 +31,7 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="/filedoc/list" class="small-box-footer py-3">จัดการ <i
+                        <a href="{{ url('filedoc/list') }}" class="small-box-footer py-3">จัดการ <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="/company/list" class="small-box-footer py-3">จัดการ <i
+                        <a href="company/list" class="small-box-footer py-3">จัดการ <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="/gallery/list" class="small-box-footer py-3">จัดการ<i
+                        <a href="{{ url('/gallery/list') }}" class="small-box-footer py-3">จัดการ<i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

@@ -7,12 +7,12 @@
             <div class="card">
                 <div class="card-header border-0 pt-3">
                     <h4> <i class="far fa-newspaper"></i> เพิ่มประกาศข่าว </h4>
-                    <a href="/news/list" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
+                    <a href="{{ url('/news/list') }}" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="container">
                     <div class="card-body">
-                        <form action="/news/create" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url ('/news/create')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="text">หัวข่าว</label>

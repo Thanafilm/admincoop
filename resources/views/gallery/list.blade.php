@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header border-0 pt-3">
                     <h4 > <i class="far fa-newspaper"></i> รายการแกลอรี</h4>
-                        <a href="/gallery/create" class="btn btn-primary ">
+                        <a href="{{ url('/gallery/create') }}" class="btn btn-primary ">
                             <i class="fas fa-upload"></i> อัปโหลดแกลอรี</a>
 
                 </div>

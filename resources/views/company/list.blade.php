@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header border-0 pt-3">
                         <h4><i class="fas fa-building"></i> รายชื่อสถานประกอบการ </h4>
-                        <a href="/company/create" class="btn btn-primary ">
+                        <a href="{{ url('/company/create') }}" class="btn btn-primary ">
                             <i class="fas fa-plus"></i> เพิ่มสถานประกอบการ</a>
                     </div>
                     <!-- /.card-header -->

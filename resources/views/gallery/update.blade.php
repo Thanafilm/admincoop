@@ -7,7 +7,7 @@
                 <!-- /.card-header -->
                 <div class="card-header border-0 pt-4">
                     <h5> <i class="nav-icon fas fa-edit"></i> แก้ไขแกลอรี </h5>
-                    <a href="/gallery/list" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
+                    <a href="{{ url('/gallery/list') }}" class="btn btn-info"><i class="fas fa-list-ul"></i> กลับหน้ารายการ</a>
 
                 </div>
                 <!-- form start -->

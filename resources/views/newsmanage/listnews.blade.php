@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header pt-3 border-0">
-                    <h4><i class="far fa-newspaper"></i> รายการข่าวทั้งหมด</h4> <a href="/news/create" class="btn btn-primary ">
+                    <h4><i class="far fa-newspaper"></i> รายการข่าวทั้งหมด</h4> <a href="{{ url('/news/create') }}" class="btn btn-primary ">
                             <i class="fas fa-plus"></i> เพิ่มรายการข่าว</a>
                 </div>
                 <!-- /.card-header -->
